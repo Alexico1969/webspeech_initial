@@ -1,3 +1,32 @@
-<html>
-    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Div '.container'</h1>
+        <button id="start-btn">Start</button>
+        <br><br>
+    </div>
+    <script>
+        var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+        var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
+        var recognition = new SpeechRecognition();
+
+        function start(){
+            recognition.start();
+            console.log("SpeechEngine started !");
+        }
+        $("#start-btn").click(start)
+        recognition.onresult = function(event){
+            var result = event.results[0][0].transcript;
+            $(".container").append(result);
+        }
+    </script>
+</body>
 </html>
